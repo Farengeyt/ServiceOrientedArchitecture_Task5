@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.mycompany.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.mycompany.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Web Service is used to find students in XML file</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.mycompany.com/">
+      <s:element name="HelloWorld">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="text" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentsGraterThan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mark" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentsGraterThanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStudentsGraterThanResult" type="tns:ArrayOfStudent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStudent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Student" nillable="true" type="tns:Student" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Student">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AvgMark" type="s:float" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetStudentsLowerThan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mark" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentsLowerThanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStudentsLowerThanResult" type="tns:ArrayOfStudent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentsInRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="minMark" type="s:float" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxMark" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentsInRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStudentsInRangeResult" type="tns:ArrayOfStudent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentsGraterThanSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStudentsGraterThan" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentsGraterThanSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStudentsGraterThanResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentsLowerThanSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStudentsLowerThan" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentsLowerThanSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStudentsLowerThanResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentsInRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStudentsInRange" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentsInRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStudentsInRangeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MyWebServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentsGraterThan">
+      <wsdl:input message="tns:GetStudentsGraterThanSoapIn" />
+      <wsdl:output message="tns:GetStudentsGraterThanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentsLowerThan">
+      <wsdl:input message="tns:GetStudentsLowerThanSoapIn" />
+      <wsdl:output message="tns:GetStudentsLowerThanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentsInRange">
+      <wsdl:input message="tns:GetStudentsInRangeSoapIn" />
+      <wsdl:output message="tns:GetStudentsInRangeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MyWebServiceSoap" type="tns:MyWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://www.mycompany.com/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentsGraterThan">
+      <soap:operation soapAction="http://www.mycompany.com/GetStudentsGraterThan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentsLowerThan">
+      <soap:operation soapAction="http://www.mycompany.com/GetStudentsLowerThan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentsInRange">
+      <soap:operation soapAction="http://www.mycompany.com/GetStudentsInRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MyWebServiceSoap12" type="tns:MyWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://www.mycompany.com/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentsGraterThan">
+      <soap12:operation soapAction="http://www.mycompany.com/GetStudentsGraterThan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentsLowerThan">
+      <soap12:operation soapAction="http://www.mycompany.com/GetStudentsLowerThan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentsInRange">
+      <soap12:operation soapAction="http://www.mycompany.com/GetStudentsInRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MyWebService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Web Service is used to find students in XML file</wsdl:documentation>
+    <wsdl:port name="MyWebServiceSoap" binding="tns:MyWebServiceSoap">
+      <soap:address location="https://localhost:44343/StudentListWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MyWebServiceSoap12" binding="tns:MyWebServiceSoap12">
+      <soap12:address location="https://localhost:44343/StudentListWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
